@@ -1,3 +1,21 @@
 *{
  margin: 0;
 }
+.App{
+    
+    height: 100%;
+    width: 100%;
+    background-color: #fafafa;
+
+}
+
+
+img.app__headerImage{
+    height: 5vh;
+    width: 100%;
+    background-color: white;
+    padding: 5px;
+    border-bottom: 1px solid lightseagreen;
+    object-fit: contain;
+    object-position: left;
+}
