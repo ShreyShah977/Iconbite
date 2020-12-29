@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+## Protect API Keys for short term. Until we setup secrets.
+/src/firebase.js
