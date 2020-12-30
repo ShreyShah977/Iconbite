@@ -36,7 +36,9 @@ function App() {
   const [modalStyle] = React.useState(getModalStyle);
 
   const [posts, setPosts] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); 
+
+  const [openSignIn, setOpenSignIn] = useState(false);
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -50,14 +52,6 @@ function App() {
       // Assume individual has logged in.
         console.log(authUser);
         setCurrentUser(authUser);
-
-        if (authUser.displayName){
-          // Leave username alone
-        } else {
-          return authUser.updateProfile({
-            displayName: username,
-          })
-        }
 
       } else {
       // Individual has NOT logged in.
@@ -87,15 +81,30 @@ function App() {
       })));
     });
   }, []);
-
+  
   const registerUser = (event) => {
     event.preventDefault();
 
     auth
     .createUserWithEmailAndPassword(email, password)
+    .then((authUser) => {
+       return authUser.user.updateProfile({
+        displayName: username
+      })
+    })
     .catch((error) => alert(error.message));
+    setOpen(false);
   }
+  const signIn = (event) => {
+    event.preventDefault();
+    auth
+    .signInWithEmailAndPassword(email, password)
+    .catch((error) => alert(error.message));
 
+
+    setOpenSignIn(false);
+
+  }
 
   return (
     <div className="App">
@@ -139,14 +148,52 @@ function App() {
         </div>
       
       </Modal>
+
+      <Modal
+        open={openSignIn}
+        onClose={() => setOpenSignIn(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <form className="app__signup">
+            <center>
+            <img
+              className="app__signupImage"
+              src={logo}
+              alt="AppIconImage"
+            />
+            </center>
+            <Input
+              placeholder="Email "
+              type="text"
+              value={email}
+              onChange={(e)=> setEmail(e.target.value)}
+            />
+            <Input
+              placeholder="Password "
+              type="password"
+              value={password}
+              onChange={(e)=> setPassword(e.target.value)}
+            />
+            <Button type="submit" onClick={signIn}> Login </Button>
+           
+          </form>
+        </div>
       
+      </Modal>
       <div className="app__header"><img
         className="app__headerImage"
         src={logo}
         alt="AppIconImage"
       /></div>
+      {user ? (
+        <Button onClick={()=> auth.signOut()}>Logout</Button>
+      ):(
+        <div className="app_loginContainer">
+        <Button onClick={()=> setOpen(true)}>Register</Button>
+        <Button onClick={()=> setOpenSignIn(true)}>Sign In</Button>
+        </div>
+      )}
 
-      <Button onClick={()=> setOpen(true)}>Sign Up</Button>
       <h1> Welcome Back! </h1>
       {/* Room for Posts */}
       {
