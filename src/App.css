@@ -9,7 +9,6 @@
 
 }
 
-
 img.app__headerImage{
     height: 5vh;
     width: 100%;
@@ -18,4 +17,15 @@ img.app__headerImage{
     border-bottom: 1px solid lightseagreen;
     object-fit: contain;
     object-position: left;
+}
+img.app__signupImage{
+    width: 70%;
+    background-color: white;
+    object-fit: contain;
+    object-position: left;
+}
+.app__signup{
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
 }
