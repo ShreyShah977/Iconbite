@@ -7,7 +7,7 @@ import { db, auth, storage } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal'
 import { Button, Input } from '@material-ui/core';
-
+import ImageUpload from './ImageUpload';
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -73,7 +73,7 @@ function App() {
   // UseEffect, running a piece of code based on our specific condition
   // Runs once when the app component loads, but "reacts" to when posts change.
   useEffect(() => {
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       // Snapshotting everytime a new update/post is made.
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id, 
@@ -107,10 +107,23 @@ function App() {
   }
 
   return (
-    <div className="App">
-      
-      
-      {/* Room for Header */} 
+    <div className="App">  
+     
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName}>
+
+        </ImageUpload>  
+      ): (    
+
+        <h5>Please Login to Upload</h5>
+
+      )}
+         
+
+
+
+      {/* Sign Up Component */}
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -180,6 +193,7 @@ function App() {
         </div>
       
       </Modal>
+      {/* Room for Header */} 
       <div className="app__header"><img
         className="app__headerImage"
         src={logo}

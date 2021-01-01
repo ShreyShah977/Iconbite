@@ -24,3 +24,4 @@ yarn-error.log*
 
 ## Protect API Keys for short term. Until we setup secrets.
 /src/firebase.js
+.eslintcache
