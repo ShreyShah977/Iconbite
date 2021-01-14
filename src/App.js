@@ -1,6 +1,6 @@
 
 import './App.css';
-import logo from './assets/SmallIconLogo.png';
+import logo from './assets/IconBiteLogo.png';
 import Post from './Post';
 import React, { useState, useEffect } from  'react';
 import { db, auth, storage } from './firebase';
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid lightseagreen',
+    backgroundColor: '#FAFAFA',
+    border: '2px solid white',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -107,22 +107,8 @@ function App() {
   }
 
   return (
-    <div className="App">  
+    <div className="app">  
      
-
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName}>
-
-        </ImageUpload>  
-      ): (    
-
-        <h5>Please Login to Upload</h5>
-
-      )}
-         
-
-
-
       {/* Sign Up Component */}
       <Modal
         open={open}
@@ -155,7 +141,7 @@ function App() {
               value={password}
               onChange={(e)=> setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={registerUser}> Register </Button>
+            <Button type="submit" onClick={registerUser}><p className='app_Login_Button'>Register</p></Button>
            
           </form>
         </div>
@@ -187,7 +173,7 @@ function App() {
               value={password}
               onChange={(e)=> setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signIn}> Login </Button>
+            <Button type="submit" onClick={signIn}><p className='app_Login_Button'>Login</p> </Button>
            
           </form>
         </div>
@@ -198,27 +184,41 @@ function App() {
         className="app__headerImage"
         src={logo}
         alt="AppIconImage"
-      /></div>
+      />
       {user ? (
-        <Button onClick={()=> auth.signOut()}>Logout</Button>
+        <Button onClick={()=> auth.signOut()}><p className='app_Login_Button'>Log Out</p></Button>
       ):(
         <div className="app_loginContainer">
-        <Button onClick={()=> setOpen(true)}>Register</Button>
-        <Button onClick={()=> setOpenSignIn(true)}>Sign In</Button>
+          <Button onClick={()=> setOpen(true)}><p className='app_Login_Button'>Register</p></Button>
+          <Button onClick={()=> setOpenSignIn(true)}><p className='app_Login_Button'>Sign In</p></Button>
         </div>
-      )}
+      )} 
+      
+      </div>
+      
 
-      <h1> Welcome Back! </h1>
+      <div className="app__postsContainer">
       {/* Room for Posts */}
       {
         posts.map(({id, post}) => (
           <Post key={id}  username = {post.username} tagLine = {post.tagLine} imageSrc = {post.imageSrc}> </Post>
         ))
       }
+      </div>
 
       {/* Room for Posts */}
 
+      
+    {user?.displayName ? (
+      <ImageUpload username={user.displayName}>
 
+      </ImageUpload>  
+    ): (    
+
+      <h5>Please Login to Upload</h5>
+
+    )}
+         
     </div>
   );
 }

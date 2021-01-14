@@ -1,19 +1,22 @@
 .post{
     background-color: white;
     max-width: 500px;
-    border: 1px solid lightgrey;
+    border: 1px solid lightseagreen;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
     
 }
 
 .post__img{
     width: 100%;
     object-fit:contain;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightseagreen;
+    border-bottom: 1px solid lightseagreen;
     
 }
 .post__text{
-
+    color: black;
     font-weight: normal;
     padding: 20px;
 }
@@ -21,6 +24,7 @@
     padding: 20px;
     display:flex;
     align-items: center;
+    color: black;
 
 }
 .post__avatar{
