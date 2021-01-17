@@ -8,6 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal'
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
+import InstagramEmbed from 'react-instagram-embed';
+
+
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -199,15 +202,14 @@ function App() {
 
       <div className="app__postsContainer">
       {/* Room for Posts */}
-      {
-        posts.map(({id, post}) => (
-          <Post key={id}  username = {post.username} tagLine = {post.tagLine} imageSrc = {post.imageSrc}> </Post>
-        ))
-      }
+        {
+          posts.map(({id, post}) => (
+            <Post key={id}  username = {post.username} tagLine = {post.tagLine} imageSrc = {post.imageSrc}> </Post>
+          ))
+        }
       </div>
 
       {/* Room for Posts */}
-
       
     {user?.displayName ? (
       <ImageUpload username={user.displayName}>

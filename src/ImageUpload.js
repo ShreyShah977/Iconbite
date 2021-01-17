@@ -10,11 +10,18 @@ function ImageUpload({username}) {
     // const [url, setUrl] = useState('');
     const [currentProgress, setcurrentProgress] = useState(0);
     const [tagLine, setTagLine] = useState('');
-
-
+    const [error, setError] = useState(null)
+    const types = ['image/png', 'image/jpeg','images/jpg'];
     const handleChange = (e) => {
-        if (e.target.files[0]) {
-            setImageFile(e.target.files[0]);
+        let selected = e.target.files[0];
+        if (selected &&  types.includes(selected.type)){
+            setImageFile(selected);
+            setError('');
+        }else{
+            setImageFile(null);
+            setError('Please select a valid image file (png or jpeg');
+
+
         }
     };
     const handleUpload = () => {
@@ -81,6 +88,9 @@ function ImageUpload({username}) {
                 onChange={handleChange}
             >
             </input>
+            <div className="output">
+                    {error && <div className="error"> {error} </div>}
+            </div>
             <Button onClick={handleUpload}>
             <p className='imageUpload_UploadButton'>Upload Post</p>
             </Button>

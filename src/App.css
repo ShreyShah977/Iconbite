@@ -16,18 +16,22 @@
     display: flex;
     justify-content: space-between;
 }
-/* .app__postsContainer{
-    display: flex;
-    flex-direction: row;
-} */
+.app__postsContainer{
+    padding: 20px;
+}
 .app_Login_Button{
+    display: flex;
     color: lightseagreen;
+    font-size: 1.2rem;
+    letter-spacing: 1.2px;
+    font-weight: normal;
+    font-family: "cambria";
 }
 
 
 
 .app_loginContainer{
-    padding-top: 20px;
+    padding-top: 13px;
     
 }
 

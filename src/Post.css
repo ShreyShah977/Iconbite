@@ -5,7 +5,9 @@
     margin-bottom: 15px;
     margin-left: 10px;
     margin-right: 10px;
-    
+    --primary: #efb6b2;
+    --secondary: #4e4e4e;
+    --error: #ff4a4a;
 }
 
 .post__img{
@@ -19,12 +21,20 @@
     color: black;
     font-weight: normal;
     padding: 20px;
+    color: #1C1C1C;
+    font-weight: normal;
+    font-size: 0.9rem;
 }
 .post__header{
     padding: 20px;
     display:flex;
     align-items: center;
     color: black;
+    font-family: 'Noto Serif';
+    color: var(--secondary);
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 1.2rem;
 
 }
 .post__avatar{

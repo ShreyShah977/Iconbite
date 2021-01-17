@@ -8,10 +8,16 @@
     margin-bottom: 15px;
     background-color: white;
     border-top: 1px solid grey;
+    font-family: "Roboto";
+    color: #4e4e4e;
 }
 .imageUpload__progress{
     width: 100%;
+    color: lightseagreen;
 }
 p.imageUpload_UploadButton{
-    color: white;
+    object-fit: contain;
+    color: lightseagreen;
+    width: 100%;
+    border: solid 1px;
 }
