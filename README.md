@@ -10,6 +10,11 @@ Primarily done with Google's FireBase and more specifically, the FireStore. A No
 
 
 
+## Screenshots:
+
+Main Page:
+
+
 
 
 
